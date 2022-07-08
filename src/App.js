@@ -51,12 +51,18 @@ function App() {
     setRespostas({ ...respostas, [target.id]: target.value })
   }
 
+  function handleClick() {
+    if (slide < perguntas.length) {
+      setSlide(slide + 1);
+    }
+  }
+
   return (
-    <form>
+    <form onSubmit={(event) => event.preventDefault()}>
       {perguntas.map((pergunta, index) => (
         <Radio active={slide === index} key={pergunta.id} value={respostas[pergunta.id]} onChange={handleChange} {...pergunta} />
       ))}
-      <button>Próxima</button>
+      <button onClick={handleClick}>Próxima</button>
     </form>
   )
 }
